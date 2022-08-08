@@ -6,7 +6,7 @@ const {
   validateNote,
   updateNotes,
 } = require("../../lib/notes");
-let notesData = require("../../db/db.json");
+const notesData = require("../../db/db.json");
 
 // import uuid to create a unique ID
 const uuid = require("uuid");
@@ -46,12 +46,11 @@ router.post("/notes", (req, res) => {
 
 // *** DELETE NOTE app end route ***
 router.delete("/notes/:id", (req, res) => {
-  const { id } = req.params;
-
-  const deleted = notesData.find((note) => note.id === id);
+  var deleteNote = req.params.id;
+  const deleted = notesData.find((note) => note.id === deleteNote);
   if (deleted) {
-    notesData = notesData.filter((note) => note.id !== id);
-    updateNotes(notesData);
+    newNotesData = notesData.filter((note) => note.id !== deleteNote);
+    updateNotes(newNotesData);
     res.json(deleted);
   } else {
     res.status(404).send({ error: "Note not found" });
