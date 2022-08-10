@@ -23,11 +23,11 @@ Use note taker to write, save and delete notes.
 ## Screenshots
 
 ```md
-![Landing-page](./public/assets/images/Landing-page 2022-08-09.png)
+![Landing-page](./public/assets/images/Landing-page.png)
 ```
 
 ```md
-![Notes-page](./public/assets/images/Notes-page 2022-08-09.png)
+![Notes-page](./public/assets/images/Notes-page.png)
 ```
 
 ## Questions
