@@ -10,8 +10,18 @@
     "id": "1"
   },
   {
-    "title": "testing",
-    "text": "tesing",
-    "id": "3c2e8865-fe3e-4ccb-89eb-3f22bbb37618"
+    "title": "Heroku",
+    "text": "Deploy my server to Heroku",
+    "id": "2"
+  },
+  {
+    "title": "Review code",
+    "text": "Review starter code for bugs",
+    "id": "3"
+  },
+  {
+    "title": "Heroku Test",
+    "text": "Must delete on after deploying to Heroku",
+    "id": "010b00a0-f47e-48f9-81bb-c1adb36bc0e7"
   }
 ]

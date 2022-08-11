@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const {
+  readAllData,
   filterByQuery,
   findById,
   createNewNote,
@@ -9,8 +10,7 @@ const {
 const notesData = require("../../db/db.json");
 
 // import uuid to create a unique ID
-const uuid = require("uuid");
-const uniqueId = uuid.v4();
+const { v4: uuidv4 } = require("uuid");
 
 // *** FILTER BY QUERY app end route ***
 router.get("/notes", (req, res) => {
@@ -33,23 +33,28 @@ router.get("/notes/:id", (req, res) => {
 
 // *** CREATE NEW NOTE && VALIDATE NOTES app end route ***
 router.post("/notes", (req, res) => {
-  req.body.id = uniqueId; //add a unique id
-
+  //add a unique id
+  var createNote = {
+    title: req.body.title,
+    text: req.body.text,
+    id: uuidv4(),
+  };
   // if any data in req.body is incorrect, send 400 error back
   if (!validateNote(req.body)) {
     res.status(400).send({ error: "The note is not properly formatted" });
   } else {
-    const note = createNewNote(req.body, notesData);
+    createNewNote(createNote, notesData);
     res.json(req.body);
   }
 });
 
 // *** DELETE NOTE app end route ***
 router.delete("/notes/:id", (req, res) => {
+  const result = readAllData(req.params.id, notesData);
   var deleteNote = req.params.id;
-  const deleted = notesData.find((note) => note.id === deleteNote);
+  const deleted = result.find((note) => note.id === deleteNote);
   if (deleted) {
-    newNotesData = notesData.filter((note) => note.id !== deleteNote);
+    newNotesData = result.filter((note) => note.id !== deleteNote);
     updateNotes(newNotesData);
     res.json(deleted);
   } else {
